@@ -1,0 +1,31 @@
+<html lang="en" data-bs-theme="light">
+<head>
+    <title>Comment Details</title>
+    <%- include("includes/head.ejs") %>
+    
+
+</head>
+<%- include("includes/header.ejs") %>
+<body>
+    <div class="container-md mt-3">
+        <div class="col-12">
+            <h1>Edit User</h1>
+            <hr class="featurette-divider">
+            <form method="post" action="/admin/user/<%= user.id %>/edit">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" value="<%= user.first_name %>" required>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" value="<%= user.last_name %>" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<%= user.email %>" required>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+
+    </div>
+
+
+</body>
+
+<%- include("includes/footer.ejs") %>
+</html>

@@ -1,0 +1,38 @@
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="/comments" class="nav-link px-2 text-white">Comments</a></li>
+                <li><a href="/mesta" class="nav-link px-2 text-white">Pamiatky</a></li>
+            </ul>
+            <% if (typeof userId !== 'undefined' && userId) { %>
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="16" fill="#ccc" />
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser">
+                        <li><a class="dropdown-item" href="/my-profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                        <% if (isAdmin) { %>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/admin/users">Admin Panel</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            <% } else { %>
+                <div class="text-end">
+                    <a href="/login" class="btn btn-outline-light me-2" role="button">Login</a>
+                    <a href="/sign-up" class="btn btn-outline-light" role="button">Sign-up</a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</header>

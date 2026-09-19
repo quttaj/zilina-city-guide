@@ -1,0 +1,149 @@
+
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <title>Comments</title>
+    <%- include("includes/head.ejs") %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+   
+<%- include("includes/header.ejs") %>
+
+<style>
+    .btn-icon i {
+    font-size: 1.3em; 
+}
+</style>
+
+<body>
+    <section class="container-md mt-3">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-auto">
+                <div style="position: relative; width: max-content;">
+                    <h2>All comments</h2>
+                </div>
+            </div>
+            <div class="col-auto">
+                <% if (userId) { %>
+                    <a href="/addComment" class="btn btn-primary col-auto">Add comment</a>
+                <% } else { %>
+                    <button class="btn btn-primary col-auto" data-bs-toggle="modal" data-bs-target="#authModal">Add comment</button>
+            
+                    <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="authModalLabel">Authentication Required</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    You need to log in or register to add a comment.
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="/login" class="btn btn-primary">Login</a>
+                                    <a href="/sign-up" class="btn btn-secondary">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>        
+            
+        </div>
+        <hr class="featurette-divider">
+        <div class="row">
+            <% if(numberOfComments === 0) { %>
+                <p class="homeMainText col-12 text-center" style="margin-bottom: 0;">No comments</p>
+            <% } else { %>
+            <p class="homeMainText col-12 text-center" style="margin-bottom: 0;">We have <%= numberOfComments %> comments</p>
+            <% } %>
+        </div>
+    
+        <div class="text-center mt-3">
+            <form method="GET" action="/comments" class="d-inline-block">
+                <div class="list-group d-none" id="filterList">
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Katedrála Najsvätejšej Trojice">
+                        <span>Katedrála Najsvätejšej Trojice</span>
+                    </label>
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Mariánske námestie">
+                        <span>Mariánske námestie</span>
+                    </label>
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Stará radnica">
+                        <span>Stará radnica</span>
+                    </label>
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Burianova veža">
+                        <span>Burianova veža</span>
+                    </label>
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Rosenfeldov palác">
+                        <span>Rosenfeldov palác</span>
+                    </label>
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Kostol sv. Štefana kráľa">
+                        <span>Kostol sv. Štefana kráľa</span>
+                    </label>
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Hrad Budatín">
+                        <span>Hrad Budatín</span>
+                    </label>
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Hrad Lietava">
+                        <span>Hrad Lietava</span>
+                    </label>
+                    <label class="list-group-item d-flex gap-2">
+                        <input class="form-check-input flex-shrink-0" type="checkbox" name="filter" value="Hrad Strečno">
+                        <span>Hrad Strečno</span>
+                    </label>
+                    
+                </div>
+                <button type="button" class="btn btn-secondary" id="toggleFilter">Choose..</button>
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="submit" class="btn btn-outline-none" onclick="document.getElementById('filterList').querySelectorAll('[type=checkbox]').forEach(cb => cb.checked = false);">Reset</button>
+            </form>
+        </div>
+    </section>
+    
+    <section class="container py-3" id="comments-section">
+        <div class="row">
+            <% for(const com of comments) { %>
+                <div class="col-12 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= com.name %></h5>
+                            <p class="card-text"><%= com.description %></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-center align-items-center"> 
+                                    <a href="/comments/<%= com.id %>" class="btn btn-primary">Show details</a>
+                                    <% if (userId && (isAdmin || Number(userId) === Number(com.author_id))) { %>
+                                        <a href="/comments/edit/<%= com.id %>" class="btn btn-icon mx-1" style="margin-top: 2px;">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <form method="post" action="/comments/delete/<%= com.id %>" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                            <button type="submit" class="btn btn-icon mx-1" style="position: relative; top: -2px;">
+                                                <i class="bi bi-trash3"></i>
+                                            </button>
+                                        </form>
+                                    <% } %>
+                                </div>
+                                <small class="text-muted">Author: <%= com.author %></small>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </section>
+    
+    
+</body>
+
+
+<%- include("includes/footer.ejs") %>
+
+</html>

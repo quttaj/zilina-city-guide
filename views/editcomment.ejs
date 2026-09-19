@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Comment</title>
+    <%- include("includes/head.ejs") %>
+</head>
+<body>
+<%- include("includes/header.ejs") %>
+
+<div  class="container-md mt-3">
+    
+        <div style="position: relative; width: max-content;">
+            <h2>Edit</h2>
+
+    </div>
+
+    <hr class="featurette-divider">
+    <form action="/comments/edit/<%= comment.id %>" method="post">
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required><%= comment.description %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+<%- include("includes/footer.ejs") %>
+</body>
+</html>

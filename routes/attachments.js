@@ -1,0 +1,20 @@
+const router = require('../util/router')();
+const db = require('../data/database');
+router.get('/attachments/:id', async (req, res) => {
+  const [rows] = await db.query('SELECT content FROM attachments WHERE id = ?', [req.params.id]);
+  if (!rows.length) return res.sendStatus(404);
+  const body = rows[0].content;
+  let type = 'application/octet-stream';
+  if (body.subarray(0, 3).equals(Buffer.from([255, 216, 255]))) type = 'image/jpeg';
+  else if (body.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) type = 'image/png';
+  else if (['GIF87a','GIF89a'].includes(body.subarray(0,6).toString())) type = 'image/gif';
+  else if (body.subarray(0,4).toString() === 'RIFF' && body.subarray(8,12).toString() === 'WEBP') type = 'image/webp';
+  else if (body.subarray(4,8).toString() === 'ftyp') type = 'video/mp4';
+  else if (body.subarray(0,3).toString() === 'ID3' || (body[0] === 255 && (body[1] & 224) === 224)) type = 'audio/mpeg';
+  res.set('X-Content-Type-Options', 'nosniff');
+  res.set('Content-Security-Policy', "sandbox; default-src 'none'");
+  res.set('Content-Type', type);
+  if (type === 'application/octet-stream') res.attachment(req.params.id);
+  res.send(body);
+});
+module.exports = router;

@@ -1,0 +1,36 @@
+{
+  "name": "zilina-city-guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env app.js",
+    "dev": "nodemon --exec \"node --env-file-if-exists=.env\" app.js",
+    "db:setup": "node --env-file-if-exists=.env scripts/setup-db.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "ejs": "^3.1.10",
+    "express": "^4.18.3",
+    "express-mysql-session": "^3.0.2",
+    "express-session": "^1.18.0",
+    "mime-types": "^2.1.35",
+    "multer": "^2.0.2",
+    "mysql2": "^3.9.7"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "overrides": {
+    "express-mysql-session": {
+      "mysql2": "^3.24.4"
+    }
+  }
+}

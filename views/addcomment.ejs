@@ -1,0 +1,50 @@
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <title>Comments</title>
+    <%- include("includes/head.ejs") %>
+</head>
+   
+<%- include("includes/header.ejs") %>
+
+<body>
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 400px;">
+        <h2 class="pb-2 text-center" style="font-weight: 500; font-size: 1.5rem; color: #333;">Add new comment</h2>
+        <form class="formAdd" method="post" action="/addComment" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Nazov</label>
+                <select class="form-select" id="name" name="name" required>
+                    <option value="">Choose..</option>
+                    <option value="Katedrála Najsvätejšej Trojice">Katedrála Najsvätejšej Trojice</option>
+                    <option value="Mariánske námestie">Mariánske námestie</option>
+                    <option value="Stará radnica">Stará radnica</option>
+                    <option value="Burianova veža">Burianova veža</option>
+                    <option value="Rosenfeldov palác">Rosenfeldov palác</option>
+                    <option value="Kostol sv. Štefana kráľa">Kostol sv. Štefana kráľa</option>
+                    <option value="Hrad Budatín">Hrad Budatín</option>
+                    <option value="Hrad Lietava">Hrad Lietava</option>
+                    <option value="Hrad Strečno">Hrad Strečno</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description" required style="height: 100px;" />
+            </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Attach file (max. 5 MB)</label>
+                <input type="file" class="form-control" id="file" name="file">
+            </div>
+            
+            <div class="d-flex justify-content-center">
+                <input type="hidden" name="redirect" value="allComments">
+                <button type="submit" class="btn btn-primary">Add</button> 
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+<%- include("includes/footer.ejs") %>
+</html>

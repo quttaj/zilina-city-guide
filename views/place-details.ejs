@@ -1,0 +1,52 @@
+<%- include("includes/head.ejs") %>
+<%- include("includes/header.ejs") %>
+
+<main class="container-md mt-3">
+    
+    <h1><%= place.name %></h1>
+    <p><%= place.description %></p>
+    <% if (comments.length > 0) { %>
+        <div class="comments-section mt-3">
+            <h3>Comments:</h3>
+            <hr class="featurette-divider">
+            <% comments.forEach(function(comment) { %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p class="card-text"><strong>Author:</strong> <%= comment.author %></p>
+                        <p class="card-text"><strong>Description:</strong> <%= comment.description %></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="/comments/<%= comment.id %>" class="btn btn-primary">View details</a>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <h3>Comments:</h3>
+        <p>No comments yet.</p>
+    <% } %>
+    
+
+    <% if (userId) { %>
+        <h3>Add a new comment:</h3>
+        <form method="post" action="/addComment" enctype="multipart/form-data">
+            <input type="hidden" name="name" value="<%= place.name %>">
+            <input type="hidden" name="redirect" value="stay">
+            <div class="mb-3">
+                <label for="description" class="form-label">Comment</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Attach file (max. 5 MB)</label>
+                <input type="file" class="form-control" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    <% } else { %>
+        <p>To add comments, please <a href="/login">log in</a>.</p>
+    <% } %>
+    
+    
+</main>
+
+<%- include("includes/footer.ejs") %>

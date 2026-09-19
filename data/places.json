@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Katedrála Najsvätejšej Trojice",
+    "description": "Katedrála Najsvätejšej Trojice — objavte Žilinu a jej okolie.",
+    "image_path": "/images/Katedrala.jpg"
+  },
+  {
+    "name": "Mariánske námestie",
+    "description": "Mariánske námestie — objavte Žilinu a jej okolie.",
+    "image_path": "/images/Namestie.jpg"
+  },
+  {
+    "name": "Stará radnica",
+    "description": "Stará radnica — objavte Žilinu a jej okolie.",
+    "image_path": "/images/Radnica.jpg"
+  },
+  {
+    "name": "Burianova veža",
+    "description": "Burianova veža — objavte Žilinu a jej okolie.",
+    "image_path": "/images/Burianovaveza1.jpg"
+  },
+  {
+    "name": "Rosenfeldov palác",
+    "description": "Rosenfeldov palác — objavte Žilinu a jej okolie.",
+    "image_path": "/images/Rosenfeldov.jpg"
+  },
+  {
+    "name": "Kostol sv. Štefana kráľa",
+    "description": "Kostol sv. Štefana kráľa — objavte Žilinu a jej okolie.",
+    "image_path": "/images/Kostol.jpg"
+  },
+  {
+    "name": "Hrad Budatín",
+    "description": "Hrad Budatín — objavte Žilinu a jej okolie.",
+    "image_path": "/images/HradBudatin.jpg"
+  },
+  {
+    "name": "Hrad Lietava",
+    "description": "Hrad Lietava — objavte Žilinu a jej okolie.",
+    "image_path": "/images/HradLietava.jpg"
+  },
+  {
+    "name": "Hrad Strečno",
+    "description": "Hrad Strečno — objavte Žilinu a jej okolie.",
+    "image_path": "/images/HradStrecno.jpg"
+  }
+]

@@ -1,0 +1,109 @@
+<html lang="en" data-bs-theme="light">
+<head>
+    <title>Comment Details</title>
+
+    <%- include("includes/head.ejs") %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        #replies { display: none; } 
+    </style>
+</head>
+<%- include("includes/header.ejs") %>
+<body>
+    <section class="container-md mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h2>Comment details</h2>
+                <hr class="featurette-divider">
+                <p><strong>Name:</strong> <%= com.name %></p>
+                <p><strong>Description:</strong> <%= com.description %></p>
+                <p><strong>Author:</strong> <%= com.author %></p>
+            </div>
+        </div>
+        <% if(com.file_path) { %>
+            <div class="row">
+                <div class="col-12">
+                    <% var fileType = mime.lookup(com.file_path) || 'application/octet-stream'; %>
+                    <% if(fileType.includes('image')) { %>
+                        <img src="<%= com.file_path %>" alt="Attached Image" style="max-width: 400px; height: auto;">
+                    <% } else if(fileType.includes('video')) { %>
+                        <video controls style="width: 100%; max-height: 300px;">
+                            <source src="<%= com.file_path %>" type="<%= fileType %>">
+                            Your browser does not support the video tag.
+                        </video>
+                    <% } else if(fileType.includes('audio')) { %>
+                        <audio controls style="width: 100%;">
+                            <source src="<%= com.file_path %>" type="<%= fileType %>">
+                            Your browser does not support the audio element.
+                        </audio>
+                    <% } else { %>
+                        <a href="<%= com.file_path %>" download class="btn btn-secondary">Download file</a>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+        <hr class="featurette-divider">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-auto">
+                <h3>Comment replies</h3>
+            </div>
+            <div class="col-auto">
+                <button id="toggleReplies" class="btn btn-primary">Show Replies</button>
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <div id="replies">
+            <% if (isAuthenticated) { %>
+                <% if (replies && replies.length > 0) { %>
+                    <% replies.forEach(function(reply) { %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p class="card-text"><strong>Author:</strong> <%= reply.author %></p>
+                                <p class="card-text"><strong>Description:</strong> <%= reply.description %></p>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <% if (userId && (isAdmin || userId === reply.user_id)) { %>
+                                            <a href="/comments/edit/<%= reply.id %>" class="btn btn-icon" title="Edit">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <form method="post" action="/comments/delete/<%= reply.id %>" onsubmit="return confirm('Are you sure you want to delete this reply?');" style="display: inline;">
+                                                <button type="submit" class="btn btn-icon" title="Delete">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        <% } %>
+                                    </div>
+                                    <small class="text-muted">Posted by <%= reply.author %></small>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>                        
+                <% } else { %>
+                    <p>No replies yet.</p>
+                <% } %>
+            <% } else { %>
+                <p>To view replies, please <a href="/login">log in</a> or <a href="/sign-up">register</a>.</p>
+            <% } %>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-body">
+                <h4>Add a reply</h4>
+                <form method="post" action="/addComment">
+                    <input type="hidden" name="parent_id" value="<%= com.id %>">
+                    <input type="hidden" name="name" value="<%= com.name %>">
+                    <input type="hidden" name="redirect" value="stay">
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                
+            </div>
+        </div>
+    </section>
+</body>
+<%- include("includes/footer.ejs") %>
+</html>
