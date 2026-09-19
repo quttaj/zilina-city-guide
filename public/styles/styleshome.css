@@ -106,3 +106,33 @@
 .btn-outline-none:hover {
   background-color: #f8f9fa; /* Легкий фон при наведении для лучшей интерактивности */
 }
+
+/* Compact home hero; scoped so the lower photo carousel stays unchanged. */
+#myCarousel .carousel-item > img {
+  height: clamp(300px, 48vw, 480px);
+  object-fit: cover;
+  object-position: center 45%;
+}
+#myCarousel .carousel-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 35%, rgba(0, 0, 0, .6));
+  pointer-events: none;
+}
+#myCarousel .carousel-caption {
+  z-index: 1;
+  bottom: 2rem;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, .6);
+}
+#myCarousel .carousel-caption h1 {
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+#myCarousel .carousel-caption .btn {
+  text-shadow: none;
+}
+.place-card > .card-img-top {
+  height: 225px;
+  object-fit: cover;
+  flex-shrink: 0;
+}

@@ -1,8 +1,8 @@
 
-<html lang="en" data-bs-theme="light">
+<html lang="sk" data-bs-theme="light">
 
 <head>
-    <title>Home</title>
+    <title>Žilina a okolie</title>
     <%- include("includes/head.ejs") %>
 </head>
    
@@ -13,52 +13,52 @@
 <main>
   <div id="myCarousel" class="carousel slide mb-6 pointer-event" data-bs-ride="carousel">
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Snímka 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Snímka 2" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Snímka 3" class=""></button>
     </div>
     <div class="carousel-inner">
         <div class="carousel-item">
-            <img src="images/Zilina1.jpg" class="d-block w-100" alt="...">
+            <img src="images/Zilina1.jpg" class="d-block w-100" alt="Pohľad na Žilinu">
             <div class="container">
                 <div class="carousel-caption text-start">
-                    <h1>Example headline.</h1>
-                    <p><a class="btn btn-lg btn-primary" href="/sign-up">Sign up today</a></p>
+                    <h1>Objavte Žilinu</h1>
+                    <p><a class="btn btn-lg btn-primary" href="/sign-up">Pridať sa</a></p>
                 </div>
             </div>
         </div>
         <div class="carousel-item active">
-            <img src="images/Zilina2.jpg" class="d-block w-100" alt="...">
+            <img src="images/Zilina2.jpg" class="d-block w-100" alt="Katedrála Najsvätejšej Trojice v Žiline">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>Another example headline.</h1>               
-                    <p><a class="btn btn-lg btn-primary" href="#aboutUsSection">Learn more</a></p>
+                    <h1>Spoznajte krásy Žiliny</h1>               
+                    <p><a class="btn btn-lg btn-primary" href="#aboutUsSection">Zistiť viac</a></p>
                 </div>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="images/Zilina3.jpg" class="d-block w-100" alt="...">
+            <img src="images/Zilina3.jpg" class="d-block w-100" alt="Žilina a jej architektúra">
             <div class="container">
                 <div class="carousel-caption text-end">
-                    <h1>One more for good measure.</h1>
-                    <p><a class="btn btn-lg btn-primary" href="/mesta">Browse gallery</a></p>
+                    <h1>Miesta, ktoré stoja za návštevu</h1>
+                    <p><a class="btn btn-lg btn-primary" href="/mesta">Pozrieť pamiatky</a></p>
                 </div>
             </div>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Predchádzajúci</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">Nasledujúci</span>
     </button>
 </div>
 
 
-  <section id="aboutUsSection" class="py-5 text-center container-fluid">
-    <div class="row py-lg-5">
+  <section id="aboutUsSection" class="py-4 text-center container-fluid">
+    <div class="row py-lg-3">
         <div class="col-10 mx-auto">
             <h2 class="pb-2 border-bottom text-center">Pamiatky</h2>
             <p class="lead text-body-secondary text-justify">
@@ -82,38 +82,32 @@
 
 
 
-    <div class="container px-4 py-5" id="featured-3">
-      <h2 class="pb-2 border-bottom text-center">You can</h2>
+    <div class="container px-4 py-4" id="featured-3">
+      <h2 class="pb-2 border-bottom text-center">Objavujte a zdieľajte</h2>
       <div class="container">
-        <div class="row g-5 py-5 justify-content-center"> 
+        <div class="row g-4 py-4 justify-content-center"> 
             <div class="col-lg-4 d-flex flex-column align-items-center text-center">
-                <h3 class="fs-2 text-body-emphasis">Write comments!</h3>
-                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                <a href="/comments" class="icon-link d-block">Comments 
-                    <svg class="bi" style="vertical-align: -.125em;">
-                        <use xlink:href="#chevron-right"></use>
-                    </svg>
+                <h3 class="fs-2 text-body-emphasis">Podeľte sa o zážitky</h3>
+                <p>Navštívili ste niektoré z týchto miest? Pridajte komentár, podeľte sa o fotografie a inšpirujte ďalších návštevníkov.</p>
+                <a href="/comments" class="icon-link d-block mt-auto">Komentáre
                 </a>
             </div>
             <div class="col-lg-4 d-flex flex-column align-items-center text-center"> 
-                <h3 class="fs-2 text-body-emphasis">See a gallery!</h3>
-                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                <a href="/mesta" class="icon-link d-block">Pamiatky 
-                    <svg class="bi" style="vertical-align: -.125em;">
-                        <use xlink:href="#chevron-right"></use>
-                    </svg>
+                <h3 class="fs-2 text-body-emphasis">Preskúmajte pamiatky</h3>
+                <p>Pozrite si fotografie pamiatok v Žiline a okolí. Vyberte si miesto, ktoré vás zaujíma, a objavte tip na ďalší výlet.</p>
+                <a href="/mesta" class="icon-link d-block mt-auto">Pamiatky
                 </a>
             </div>
         </div>
     </div>
   </div>
   
-<div class="container px-4 py-5" id="featured-3">
+<div class="container px-4 py-4" id="photo-gallery">
   <div id="myMultiImageCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myMultiImageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myMultiImageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myMultiImageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#myMultiImageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Snímka 1"></button>
+      <button type="button" data-bs-target="#myMultiImageCarousel" data-bs-slide-to="1" aria-label="Snímka 2"></button>
+      <button type="button" data-bs-target="#myMultiImageCarousel" data-bs-slide-to="2" aria-label="Snímka 3"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -158,11 +152,11 @@
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myMultiImageCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+      <span class="visually-hidden">Predchádzajúci</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myMultiImageCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+      <span class="visually-hidden">Nasledujúci</span>
     </button>
   </div>
 </div>
